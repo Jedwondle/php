@@ -122,7 +122,12 @@ if(empty($errors)){
  *************************************************/
 elseif ($action == 'Login') {
   // Handle the login
+  $emailaddress = $_POST['cemail'];
+  $password = $_POST['cpassword'];
+  $emailaddress = valEmail($emailaddress);
+  $password = valString($password);
   
+  $loginsuccess = loginClient($emailaddress, $password);
 } 
 /* ************************************************
  * Default behavior - deliver the register page

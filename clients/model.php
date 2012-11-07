@@ -73,6 +73,7 @@ function regClient($firstname, $lastname, $emailaddress, $password) {
  * Check if registrant's email already exists
  *************************************************/
 function isUsed($emailaddress) {
+ global $conn;
  $sql = 'SELECT auth_email FROM authentication WHERE auth_email = ?';
  if ($stmt = $conn->prepare($sql)) {
   $stmt->bind_param('s', $emailaddress);
@@ -88,4 +89,9 @@ function isUsed($emailaddress) {
  }
 }
 
+
+function loginClient($emailaddress, $password){
+ global $conn;
+ $password = crypt($password, '$2a$10$ThisIsABlowfishSaltVlu$');
+}
 ?>
